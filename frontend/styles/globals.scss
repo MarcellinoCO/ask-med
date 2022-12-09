@@ -94,7 +94,9 @@
     }
   }
 
-  p {
+  p,
+  input[type="text"],
+  input::placeholder {
     color: inherit;
     font-style: normal;
     font-weight: 400;
@@ -134,5 +136,20 @@
       font-size: 14px;
       line-height: 17px;
     }
+  }
+}
+
+@layer components {
+  .input-group {
+    > :last-child {
+      height: 100%;
+      min-height: 0;
+    }
+  }
+
+  .input {
+    padding: 0.75rem 1rem;
+    height: fit-content;
+    min-height: 0;
   }
 }

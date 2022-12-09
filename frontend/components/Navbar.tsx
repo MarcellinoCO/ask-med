@@ -17,7 +17,7 @@ const Navbar: FC<NavbarProps> = memo(({ className }) => {
   return (
     <nav
       className={twMerge(
-        "navbar sticky top-0 z-10 flex items-center",
+        "navbar sticky top-0 z-10 flex items-center bg-base-100",
         className
       )}
     >
