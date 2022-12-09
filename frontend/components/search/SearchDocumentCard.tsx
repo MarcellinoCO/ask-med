@@ -14,7 +14,7 @@ const SearchDocumentCard: FC<SearchDocumentCardProps> = memo(
   ({ className, searchDocument, query }) => {
     const [expand, setExpand] = useState(false);
 
-    const keywords = useMemo(() => query.split(/\s+/), [query]);
+    const keywords = useMemo(() => query.toLowerCase().split(/\s+/), [query]);
     const excerpt = useMemo(
       () => extractExcerpt(searchDocument.content, keywords),
       [searchDocument.content, keywords]
