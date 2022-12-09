@@ -1,16 +1,12 @@
-import "../styles/globals.css";
+import "../styles/globals.scss";
 
 import { useEffect } from "react";
 import type { AppProps } from "next/app";
 
-import { themeChange } from "theme-change";
 import Head from "next/head";
+import { ThemeProvider } from "@contexts";
 
 const AskMedApp = ({ Component, pageProps }: AppProps) => {
-  useEffect(() => {
-    themeChange(false);
-  }, []);
-
   return (
     <>
       <Head>
@@ -18,7 +14,9 @@ const AskMedApp = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" type="image/x-icon" href="/logo.svg" />
       </Head>
 
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };

@@ -1,8 +1,10 @@
+import { Page } from "@components";
+
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <Page>
       <h1>Hello World</h1>
-    </div>
+    </Page>
   );
 };
 
