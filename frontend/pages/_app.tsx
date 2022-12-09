@@ -1,12 +1,14 @@
 import "../styles/globals.scss";
 
-import { useEffect } from "react";
 import type { AppProps } from "next/app";
 
-import Head from "next/head";
 import { ThemeProvider } from "@contexts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import Head from "next/head";
 
 const AskMedApp = ({ Component, pageProps }: AppProps) => {
+  const queryClient = new QueryClient();
   return (
     <>
       <Head>
@@ -14,9 +16,11 @@ const AskMedApp = ({ Component, pageProps }: AppProps) => {
         <link rel="icon" type="image/x-icon" href="/logo.svg" />
       </Head>
 
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 };

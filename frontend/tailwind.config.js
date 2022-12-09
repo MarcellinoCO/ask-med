@@ -13,9 +13,34 @@ module.exports = {
         md: "1.5rem",
       },
     },
-    extend: {},
+    extend: {
+      animation: {
+        ripple: "ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite",
+        "ripple-delay": "ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite 0.5s",
+      },
+      keyframes: {
+        ripple: {
+          "0%": {
+            top: "50%",
+            left: "50%",
+            width: 0,
+            height: 0,
+            opacity: 0,
+          },
+          "4.9%": { opacity: 0 },
+          "5%": { opacity: 1 },
+          "100%": {
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            opacity: 0,
+          },
+        },
+      },
+    },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
   daisyui: {
     themes: ["winter", "night"],
     darkTheme: "night",

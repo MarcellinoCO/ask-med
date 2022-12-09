@@ -1,24 +1,31 @@
 import { FC, memo, PropsWithChildren } from "react";
 
 import { twMerge } from "tailwind-merge";
-import { Footer, Navbar } from "@components";
+import { Footer, Loader, Navbar } from "@components";
 
 type PageProps = {
   className?: string;
+  loading?: boolean;
 };
 
 const Page: FC<PropsWithChildren<PageProps>> = memo(
-  ({ className, children }) => (
-    <div className="container relative flex flex-col items-stretch w-screen min-h-screen">
+  ({ className, loading = false, children }) => (
+    <div className="container relative flex flex-col items-stretch min-h-screen">
       <Navbar />
-      <main
-        className={twMerge(
-          "flex flex-col items-stretch px-2 py-4 w-full",
-          className
-        )}
-      >
-        {children}
-      </main>
+
+      {loading ? (
+        <Loader />
+      ) : (
+        <main
+          className={twMerge(
+            "flex-1 flex flex-col items-stretch px-2 pt-4 pb-8 w-full",
+            className
+          )}
+        >
+          {children}
+        </main>
+      )}
+
       <Footer />
     </div>
   )
