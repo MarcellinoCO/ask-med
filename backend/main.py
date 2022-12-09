@@ -10,6 +10,13 @@ bucket = storage_client.bucket("gcf-sources-436560475999-asia-southeast2")
 
 
 def search(request):
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '3600'
+    }
+
     query = request.args.get("q")
     if query == None:
         return "Please enter a search query", 400
@@ -27,6 +34,6 @@ def search(request):
     for (_, doc) in ranking:
         length += 1
         with bucket.blob(doc.replace("\\", "/")).open("r") as f:
-            serp.append(f.read())
+            serp.append({"title": doc.replace("\\", "/"), "content": f.read()})
 
-    return {"duration": end_time - start_time, "length": length, "serp": serp}, 200
+    return {"duration": end_time - start_time, "length": length, "serp": serp}, 200, headers
